@@ -29,7 +29,7 @@ def to1():
         for word in search_words:
             if word in line:
                 # print(line)
-                string_name = f"string_{i + 1}"  # create a variable name with a unique number
+                string_name = f"string1_{i + 1}"  # create a variable name with a unique number
                 string_value = f"{line}"  # create the string value
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
@@ -65,7 +65,7 @@ def to2():
         for word in search_words:
             if word in line:
                 # print(line)
-                string_name = f"string_{i + 1}"  # create a variable name with a unique number
+                string_name = f"string2_{i + 1}"  # create a variable name with a unique number
                 string_value = f"{line}"  # create the string value
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
