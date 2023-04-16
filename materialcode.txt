@@ -1,0 +1,181 @@
+UC001	Spo2 Probes
+UC002	NIBP Hose Pipes
+UC003	NIBP Cuff
+UC004	Mouth Pieces/ Paper tubes
+UC005	Cardiomin 2 K Patient cable/ APC Cable/ TMT Patient cable/ Patient cable 386
+UC006	Cardiomin 3c Patient cable
+UC007	Clamps Electrode Sets
+UC008	Silicon Rubber Bulbs
+UC009	Chest Electrodes 
+UC010	Chest Electrodes with Silicon Rubber Bulbs
+UC011	Battery  2k/ 3c/ 12b/ 6 Volt/ Syringe Pump
+UC012	Grabber Lead Set/ Limb Lead Set
+UC013	Spo2 Extension Cable
+UC014	Monitor ECG Patient Cable
+UC015	Finger Tip Pulse Oximeter
+UC016	Repairing of Spo2 probes
+UC017	Power Supply Board
+UC018	Thermal Printer  2k/ 3c/ 12b
+UC019	Battery
+UC020	
+UC021	
+UC022	
+UC023	
+UC024	
+UC025	
+UC026	Cardiofax 3R ECG Rolls  106 mmX20M
+UC027	Cardiomin 2k ECG Rolls 50mmX20M/ 50mmX30M/ Mac-I 58X20
+UC028	Cardiomin 3c ECG Rolls 80mmX20M/ 60mmX15M/ MAC 400
+UC029	Cardiomin 12b ECG Rolls 210mmX20M/ 216mmX20M
+UC030	Thermal Paper Pack - Philips / GE / Schiller /215mmX280mmX150/ 210mmX300mmX200
+UC031	Paper Rim/ Bilt NSD
+UC032	
+UC033	
+UC034	
+UC035	
+UC036	Cardiomin 12B ECG M/c
+UC037	Cardiomin 12B Touch Screen ECG M/c
+UC038	Cardiomin 2k ECG M/C 
+UC039	Cardiofax single channel  ECG M/c
+UC040	Cardiomin 3c ECG M/C
+UC041	Cardiomin 3c  II ECG M/C 
+UC042	300G Three Channel
+UC043	Cardiomin LT ECG M/c
+UC044	Cardiomin LT ECG Bluetooth M/c
+UC045	Cardiomin U30 3 Channel ECG M/c
+UC046	
+UC047	
+UC048	
+UC049	
+UC050	
+UC051	CMS 8000/CMS 6000 Multipara Monitor
+UC052	Multiscope 3 Multipara Monitor
+UC053	Multipara Monitor - Model : Black
+UC054	Multipara Monitor with Nellcor SPO2
+UC055	Multipara Monitor with Nellcor SPO2+ Suntech NIBP
+UC056	Multiscope 4 Multipara Monitor
+UC057	Multipara Monitor - Model : K12
+UC058	
+UC059	
+UC060	
+UC061	Table Top Pulse Oxymeter/ Oxypulse-II (only SPO2)
+UC062	Table Top Pulse Oxymeter/ Oxypulse-II (SPO2+NIBP)
+UC063	CMS70a/ CMS 5001
+UC064	Syringe Infusion Pump Infuser-II 
+UC065	Syringe Infusion Pump SP - 1
+UC066	Syringe Infusion Pump Infuser
+UC067	
+UC068	Defibrillator Model-I
+UC069	Defibrillator Model-II
+UC070	Defibrillator Model-III
+UC071	Life Guard B/ Biphasic with printer
+UC072	Life Guard B/ Biphasic without printer
+UC073	Life Guard B/ Biphasic + Spo2
+UC074	Life Guard B/ Biphasic + Spo2 +NIBP
+UC075	Life Guard B/ Biphasic + AED
+UC076	Life Guard B/ Biphasic + AED + Pacemaker
+UC077	Defibrillator AED
+UC078	
+UC079	
+UC080	Tread Mill System - TMT M/c
+UC081	Spiromin PFT M/c
+UC082	Holter Monitoring System M/c
+UC083	Ambullator BP Monitoring System M/c
+UC084	DVT Pump M/c
+UC085	100 MA X- Ray M/c
+UC086	
+UC087	Up-Gradation TMT/ DEFIB/ ECG/ ETC.
+UC088	
+UC089	
+UC090	
+UC091	
+UC092	
+UC093	
+UC094	
+UC095	
+UC096	
+UC097	
+UC098	Philips - Dreamstation Auto CPAP
+UC099	Philips - Dreamstation CPAP / Pro
+UC100	BMC Auto CPAP GII / G2S
+UC101	Ventmed Auto CPAP DS6
+UC102	Respircare Auto CPAP 20
+UC103	Resmed Auto CPAP AIR Start 10
+UC104	Resmed Auto CPAP AIR Sense 10
+UC105	Resmed Auto CPAP S9 Auto Set
+UC106	Philips - Dreamstation S/T
+UC107	Philips - Dreamstation BiPAP AVAPS
+UC108	Philips - Dreamstation BiPAP Pro
+UC109	Philips - Dreamstation BiPAP Auto
+UC110	Philips - System One 60 Series Heated Humidifire
+UC111	Philips - Dreamstation Heated Humidifire
+UC112	BMC - BiPAP Y30T/ Y25T
+UC113	Ventmed - BiPAP DS8
+UC114	Resmed - AirCurve 10 VAUTO
+UC115	Resmed - Lumis 150 VPAP ST
+UC116	Resmed - Steller 150 Ventilator
+UC117	Philips - BiPAP A-40
+UC118	Philips - BiPAP A-30
+UC119	Philips - Trilogy EVO OBM
+UC120	Philips - Oxygen Concentrator Model:- Everflo
+UC121	DevilBiss - Oxygen Concentrator
+UC122	Nicecare - Oxygen Concentrator
+UC123	Wealth - Oxygen Concentrator Model:- Spiritus 5
+UC124	Oxygen Concentrator - Portable
+UC125	Oxygen Concentrator - 10 Liters
+UC126	BPL Auto CPAP HArmoney1 
+UC127	
+UC128	Nasal Masks - N2 / N4
+UC129	Nasal Masks - P2 Pillow
+UC130	Nasal Masks - P30i
+UC131	Nasal Masks - Philips Comfort Gell
+UC132	Nasal Masks - Philips Dream Wear Pillow
+UC133	Nasal Masks - Philips Dream Wear Wisp
+UC134	Nasal Masks - Philips Nuance Pro
+UC135	
+UC136	
+UC137	
+UC138	
+UC139	Full Face Mask - Aero / BMC / Prompt Care / General
+UC140	Full Face Mask - Philips Comfort Full 2 Gell
+UC141	Full Face Mask - Philips Dream Wear
+UC142	Full Face Mask - Non Vented / F2
+UC143	
+UC144	
+UC145	Performance Tube
+UC146	Oxygen Concentrator Filter
+UC147	CPAP Filter / Bacteria Filter 
+UC148	Nasal Canula
+UC149	Humidifier Bottle
+UC150	O2 Connector / Exhallation Connector
+UC151	Head Gear
+UC152	Chamber & Tubing of High Flow Hifent
+UC153	Hi-Fent HFNO Humidifier 
+UC154	Sieve Kit 
+UC155	Detachable Battery Module
+UC156	Detachable Battery
+UC157	
+UC158	
+UC159	
+UC160	Spares - 12%
+UC161	Spares - 18%
+UC162	Spares - Circuit Board - 12%
+UC163	Spares - Circuit Board - 18%
+UC164	
+UC165	Fatal Dopler
+UC166	
+UC167	
+UC168	
+UC169	
+UC170	Freight On Purchases
+UC171	PC, Laptop & Compures & Mobiles
+UC172	Installation of Bionet make Fetal Monitor, Model:FC1400 at Govt. of Maharashtra Hospitals at:
+UC173	
+UC174	
+UC175	
+UC176	
+UC177	
+UC178	
+UC179	
+UC180	
+
