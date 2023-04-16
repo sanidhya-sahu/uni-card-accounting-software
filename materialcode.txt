@@ -51,15 +51,15 @@ UC050
 UC051	CMS 8000/CMS 6000 Multipara Monitor
 UC052	Multiscope 3 Multipara Monitor
 UC053	Multipara Monitor - Model : Black
-UC054	Multipara Monitor with Nellcor SPO2
-UC055	Multipara Monitor with Nellcor SPO2+ Suntech NIBP
+UC054	Multipara Monitor with Nellcor Spo2
+UC055	Multipara Monitor with Nellcor Spo2+ Suntech NIBP
 UC056	Multiscope 4 Multipara Monitor
 UC057	Multipara Monitor - Model : K12
 UC058	
 UC059	
 UC060	
-UC061	Table Top Pulse Oxymeter/ Oxypulse-II (only SPO2)
-UC062	Table Top Pulse Oxymeter/ Oxypulse-II (SPO2+NIBP)
+UC061	Table Top Pulse Oxymeter/ Oxypulse-II (only Spo2)
+UC062	Table Top Pulse Oxymeter/ Oxypulse-II (Spo2+NIBP)
 UC063	CMS70a/ CMS 5001
 UC064	Syringe Infusion Pump Infuser-II 
 UC065	Syringe Infusion Pump SP - 1
