@@ -11,7 +11,7 @@ def to1():
     a=str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc"):
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -47,7 +47,7 @@ def to2():
     a=str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc"):
+    if a.startswith("UC") or a.startswith("uc")or a.startswith("nibp"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -83,7 +83,7 @@ def to3():
     a=str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc"):
+    if a.startswith("UC") or a.startswith("uc")or a.startswith("nibp"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -118,7 +118,7 @@ def to4():
     a=str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc"):
+    if a.startswith("UC") or a.startswith("uc")or a.startswith("nibp"):
         a = a.upper()
     else:
         a = a.capitalize()
