@@ -1,9 +1,7 @@
-
 from inpfilter import *
 from tkinter import *
 from tkinter import ttk
-import ckbc
-import dataIO
+
 root = Tk()
 scw = root.winfo_screenwidth()
 sch = root.winfo_screenheight()
@@ -16,27 +14,256 @@ canvas1.place(x=0, y=-100)
 root.config(bg="#DDDDDD")
 x = root.winfo_x()
 y = root.winfo_y()
+# -----------------------------------------------------------------------------data
+
+
+ubtn1 = {}
+ubtn2 = {}
+ubtn3 = {}
+ubtn4 = {}
+
+
+# button_id=0
+def get_button_text1(button_id):
+    global btn_text1
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_text1 = ubtn1[button_id]['text']
+    take1()
+    top1.destroy()
+
+
+def take1():
+    desentry1.delete(0, END)
+    desentry1.insert(0, btn_text1)
+
+
+def get_button_text2(button_id):
+    global btn_text2
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_text2 = ubtn2[button_id]['text']
+    take2()
+    top2.destroy()
+
+
+def take2():
+    desentry2.delete(0, END)
+    desentry2.insert(0, btn_text2)
+
+
+def get_button_text3(button_id):
+    global btn_text3
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_text3 = ubtn3[button_id]['text']
+    take3()
+    top3.destroy()
+
+
+def take3():
+    desentry3.delete(0, END)
+    desentry3.insert(0, btn_text3)
+
+
+def get_button_text4(button_id):
+    global btn_text4
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_text4 = ubtn4[button_id]['text']
+    take4()
+    top4.destroy()
+
+
+def take4():
+    desentry4.delete(0, END)
+    desentry4.insert(0, btn_text4)
+
+
+# from home import *
+def to1():
+    global top1
+    top1 = Toplevel()
+    # top1.minsize(500,500)
+    string_list = []  # empty list to store the strings
+    c = desentry1.get()
+    a = str(c)
+    # print(a)
+    b = ""
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+        a = a.upper()
+    else:
+        a = a.capitalize()
+    b = a
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("materialcode.txt", "r") as file:
+        lines = file.readlines()
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+
+        for word in search_words:
+            if word in line:
+                global buttons
+                # print(line)
+                buttons = {}
+
+                string_name = f"string1_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = locals()[f"string1_{i + 1}"]  # create the text for the button
+                button = ttk.Button(top1, text=button_text, command=lambda button_id=i: get_button_text1(
+                    button_id))  # create the button with the text
+                button.pack()  # add the button to the GUI
+                buttons[i] = button
+                # print(button)
+                ubtn1.update(buttons)
+                i += 1
+                break
+    # print(string_list)
+    top1.wm_iconbitmap('favicon.ico')
+
+
+def to2():
+    global top2
+    top2 = Toplevel()
+    string_list = []  # empty list to store the strings
+    c = desentry2.get()
+    a = str(c)
+    # print(a)
+    b = ""
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+        a = a.upper()
+    else:
+        a = a.capitalize()
+    b = a
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("materialcode.txt", "r") as file:
+        lines = file.readlines()
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+
+        for word in search_words:
+            if word in line:
+                # print(line)
+                string_name = f"string2_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = locals()[f"string2_{i + 1}"]  # create the text for the button
+                button = ttk.Button(top2, text=button_text, command=lambda button_id=i: get_button_text2(
+                    button_id))  # create the button with the text
+                button.pack()  # add the button to the GUI
+                buttons[i] = button
+                # print(button)
+                ubtn2.update(buttons)
+                i += 1
+                # MAKE SEPrATE INPUTS FOr SEPArATE BUTTONS
+                break
+    # print(string_list)
+    top2.wm_iconbitmap('favicon.ico')
+
+
+def to3():
+    global top3
+    top3 = Toplevel()
+    string_list = []  # empty list to store the strings
+    c = desentry3.get()
+    a = str(c)
+    # print(a)
+    b = ""
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+        a = a.upper()
+    else:
+        a = a.capitalize()
+    b = a
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("materialcode.txt", "r") as file:
+        lines = file.readlines()
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+
+        for word in search_words:
+            if word in line:
+                # print(line)
+                string_name = f"string3_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = locals()[f"string3_{i + 1}"]  # create the text for the button
+                button = ttk.Button(top3, text=button_text, command=lambda button_id=i: get_button_text3(
+                    button_id))  # create the button with the text
+                button.pack()  # add the button to the GUI
+                buttons[i] = button
+                # print(button)
+                ubtn3.update(buttons)
+                i += 1
+                break
+    # print(string_list)
+    top3.wm_iconbitmap('favicon.ico')
+
+
+def to4():
+    global top4
+    top4 = Toplevel()
+    string_list = []  # empty list to store the strings
+    c = desentry4.get()
+    a = str(c)
+    # print(a)
+    b = ""
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+        a = a.upper()
+    else:
+        a = a.capitalize()
+    b = a
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("materialcode.txt", "r") as file:
+        lines = file.readlines()
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+
+        for word in search_words:
+            if word in line:
+                # print(line)
+                string_name = f"string4_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = locals()[f"string4_{i + 1}"]  # create the text for the button
+                button = ttk.Button(top4, text=button_text, command=lambda button_id=i: get_button_text4(
+                    button_id))  # create the button with the text
+                button.pack()  # add the button to the GUI
+                buttons[i] = button
+                # print(button)
+                ubtn4.update(buttons)
+                i += 1
+                break
+    # print(string_list)
+    top4.wm_iconbitmap('favicon.ico')
 
 
 # -----------------------------------------------------------------------------funx
-def find1():
-    d1=desentry1.get()
-    dataIO.takeentry(d1,None,None,None)
-    ckbc.to1()
-def find2():
-    d2=desentry2.get()
-    dataIO.takeentry(None,d2,None,None)
-    ckbc.to2()
-def find3():
-    d3=desentry3.get()
-    dataIO.takeentry(None, None, d3, None)
-    ckbc.to3()
-def find4():
-    d4=desentry4.get()
-    dataIO.takeentry(None, None, None, d4)
-    ckbc.to3()
+
 def totupdate_supply():
     totupdate(1)
+
+
 def totupdate(self):
     # print(sta)
     match sta:
@@ -84,10 +311,10 @@ def secalc():
 
 
 def sscal():
-    ratin1 = rat1.get(0, END)
-    ratin2 = rat2.get(0, END)
-    ratin3 = rat3.get(0, END)
-    ratin4 = rat4.get(0, END)
+    ratin1 = rat1.get()
+    ratin2 = rat2.get()
+    ratin3 = rat3.get()
+    ratin4 = rat4.get()
     r1 = printInput(ratin1)[1]
     rat1.delete(0, END)
     rat1.insert(0, r1)
@@ -113,6 +340,10 @@ def clear():
     desentry2.delete(0, END)
     desentry3.delete(0, END)
     desentry4.delete(0, END)
+    mesentry.delete(0, END)
+    billndata.config(text='')
+    beofentry.delete(0, END)
+    totdata.config(text='')
 
 
 def callent():
@@ -130,8 +361,6 @@ def callserv():
     clear()
     cs()
 
-
-# -----------------------------------------------------------------------------funx
 
 # -----------------------------------------------------------------------------page en
 def ce():
@@ -151,13 +380,13 @@ def ce():
     srn3.grid(row=r + 2, column=0, padx=15, pady=20)
     srn4.grid(row=r + 3, column=0, padx=15, pady=20)
     desentry1.grid(row=2, column=1, columnspan=2)
-    find1.grid(row=2,column=1,rowspan=2,sticky="w")
+    find1.grid(row=2, column=1, rowspan=2, sticky="w")
     desentry2.grid(row=3, column=1, columnspan=2)
-    find2.grid(row=3,column=1,rowspan=2,sticky="w")
+    find2.grid(row=3, column=1, rowspan=2, sticky="w")
     desentry3.grid(row=4, column=1, columnspan=2)
-    find3.grid(row=4,column=1,rowspan=2,sticky="w")
+    find3.grid(row=4, column=1, rowspan=2, sticky="w")
     desentry4.grid(row=5, column=1, columnspan=2)
-    find4.grid(row=5, column=1,rowspan=2,sticky="w")
+    find4.grid(row=5, column=1, rowspan=2, sticky="w")
     beofentry.grid(row=7, column=1, columnspan=2)
     rat1.grid(row=2, column=3)
     # rat1.unbind("<Return>")
@@ -174,8 +403,6 @@ def ce():
     gst.grid(row=1, column=4, padx=15, pady=20)
     subbtn.config(command=totupdate_supply)
 
-
-# -----------------------------------------------------------------------------page en
 
 # -----------------------------------------------------------------------------page serv
 def cs():
@@ -196,9 +423,13 @@ def cs():
     srn3.grid(row=r + 2, column=0, padx=15, pady=20)
     srn4.grid(row=r + 3, column=0, padx=15, pady=20)
     desentry1.grid(row=2, column=1, columnspan=2)
+    find1.grid(row=2, column=1, rowspan=2, sticky="w")
     desentry2.grid(row=3, column=1, columnspan=2)
+    find2.grid(row=3, column=1, rowspan=2, sticky="w")
     desentry3.grid(row=4, column=1, columnspan=2)
+    find3.grid(row=4, column=1, rowspan=2, sticky="w")
     desentry4.grid(row=5, column=1, columnspan=2)
+    find4.grid(row=5, column=1, rowspan=2, sticky="w")
     beofentry.grid(row=6, column=1, columnspan=2)
     rat1.grid(row=2, column=3)
     rat2.grid(row=3, column=3)
@@ -211,11 +442,10 @@ def cs():
     gst3.grid_forget()
     gst4.grid_forget()
     gst.grid_forget()
+    subbtn.config(command=totupdate_supply)
 
     # subbtn.config(command=totupdate)
 
-
-# -----------------------------------------------------------------------------page serv
 
 # -----------------------------------------------------------------------------widgets
 billndata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
@@ -223,7 +453,7 @@ global totdata
 totdata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
 mes = Label(root, text='Messers :', font=("Arial", 15), bg="#DDDDDD")
 mesenvar = StringVar()
-mesentry = ttk.Entry(root, textvariable=mesenvar, width=90, xscrollcommand='-wrapt',font=('Arial', 12))
+mesentry = ttk.Entry(root, textvariable=mesenvar, width=90, xscrollcommand='-wrapt', font=('Arial', 12))
 global gst
 srno = Label(root, text='Sr no.', font=("Arial", 15), bg="#DDDDDD")
 desc = Label(root, text='Description', font=("Arial", 15), bg="#DDDDDD")
@@ -243,13 +473,13 @@ desenvar3 = StringVar()
 desenvar4 = StringVar()
 beofenvar = StringVar()
 desentry1 = ttk.Entry(root, textvariable=desenvar1, width=90, font=('Arial', 12))
-find1 =ttk.Button(root, text='Find1', width=10,command=find1)
+find1 = ttk.Button(root, text='Find1', width=10, command=to1)
 desentry2 = ttk.Entry(root, textvariable=desenvar2, width=90, font=('Arial', 12))
-find2 =ttk.Button(root, text='Find2', width=10,command=find2)
+find2 = ttk.Button(root, text='Find2', width=10, command=to2)
 desentry3 = ttk.Entry(root, textvariable=desenvar3, width=90, font=('Arial', 12))
-find3 =ttk.Button(root, text='Find3', width=10,command=find3)
+find3 = ttk.Button(root, text='Find3', width=10, command=to3)
 desentry4 = ttk.Entry(root, textvariable=desenvar4, width=90, font=('Arial', 12))
-find4 =ttk.Button(root, text='Find4', width=10,command=find4)
+find4 = ttk.Button(root, text='Find4', width=10, command=to4)
 beofentry = ttk.Entry(root, textvariable=beofenvar, width=90, font=('Arial', 12))
 beoff = beofenvar.get()
 
@@ -266,15 +496,15 @@ gst3 = ttk.Entry(root, width=20, font=('Arial', 12))
 # gst3.grid(row=4, column=4)
 gst4 = ttk.Entry(root, width=20, font=('Arial', 12))
 # gst4.grid(row=5, column=4)
-rat1.bind("<Return>",totupdate)
-# rat2.bind("<Return>",totupdate)
-# rat3.bind("<Return>",totupdate)
-# rat4.bind("<Return>",totupdate)
-# gst1.bind("<Return>",totupdate)
-# gst2.bind("<Return>",totupdate)
-# gst3.bind("<Return>",totupdate)
-# gst4.bind("<Return>",totupdate)
-subbtn =ttk.Button(root, text='Calculate', width=20)
+rat1.bind("<Return>", totupdate)
+rat2.bind("<Return>", totupdate)
+rat3.bind("<Return>", totupdate)
+rat4.bind("<Return>", totupdate)
+gst1.bind("<Return>", totupdate)
+gst2.bind("<Return>", totupdate)
+gst3.bind("<Return>", totupdate)
+gst4.bind("<Return>", totupdate)
+subbtn = ttk.Button(root, text='Calculate', width=20)
 # -----------------------------------------------------------------------------widgets
 
 # -----------------------------------------------------------------------------menu
