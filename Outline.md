@@ -6,7 +6,7 @@
   ### services
    #### ---- 
   ### invoice
-   #### ---- login
+   #### ---- login #grid_remove
   ### delivery challan
    #### ---- 
             uni..(print), adrees(print)-> office, home; Challan no.,date, coust. name,coust. address, nature of challan(radio button), serial wise description, quantity, on behalfof coust, on behalf of unicard.  

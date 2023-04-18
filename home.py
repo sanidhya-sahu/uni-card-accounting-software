@@ -282,6 +282,10 @@ def secalc():
     gstin2 = gst2.get()
     gstin3 = gst3.get()
     gstin4 = gst4.get()
+    qtin1 = qt1.get()
+    qtin2 = qt2.get()
+    qtin3 = qt3.get()
+    qtin4 = qt4.get()
     r1 = printInput(ratin1)[1]
     rat1.delete(0, END)
     rat1.insert(0, r1)
@@ -306,7 +310,23 @@ def secalc():
     g4 = printInput(gstin4)[1]
     gst4.delete(0, END)
     gst4.insert(0, g4)
-    se = (r1 + ((r1 * g1) / 100) + r2 + ((r2 * g2) / 100) + r3 + ((r3 * g3) / 100) + r4 + ((r4 * g4) / 100))
+    q1 = printInput(qtin1)[1]
+    qt1.delete(0, END)
+    qt1.insert(0, q1)
+    q2 = printInput(qtin2)[1]
+    qt2.delete(0, END)
+    qt2.insert(0, q2)
+    q3 = printInput(qtin3)[1]
+    qt3.delete(0, END)
+    qt3.insert(0, q3)
+    q4 = printInput(qtin4)[1]
+    qt4.delete(0, END)
+    qt4.insert(0, q4)
+    nr1 = r1 * q1
+    nr2 = r2 * q2
+    nr3 = r3 * q3
+    nr4 = r4 * q4
+    se = (nr1 + ((nr1 * g1) / 100) + nr2 + ((nr2 * g2) / 100) + nr3 + ((nr3 * g3) / 100) + nr4 + ((nr4 * g4) / 100))
     totdata.config(text=se)
 
 
@@ -315,6 +335,10 @@ def sscal():
     ratin2 = rat2.get()
     ratin3 = rat3.get()
     ratin4 = rat4.get()
+    qtin1 = qt1.get()
+    qtin2 = qt2.get()
+    qtin3 = qt3.get()
+    qtin4 = qt4.get()
     r1 = printInput(ratin1)[1]
     rat1.delete(0, END)
     rat1.insert(0, r1)
@@ -327,11 +351,33 @@ def sscal():
     r4 = printInput(ratin4)[1]
     rat4.delete(0, END)
     rat4.insert(0, r4)
-    ss = (r1 + r2 + r3 + r4)
+    q1 = printInput(qtin1)[1]
+    qt1.delete(0, END)
+    qt1.insert(0, q1)
+    q2 = printInput(qtin2)[1]
+    qt2.delete(0, END)
+    qt2.insert(0, q2)
+    q3 = printInput(qtin3)[1]
+    qt3.delete(0, END)
+    qt3.insert(0, q3)
+    q4 = printInput(qtin4)[1]
+    qt4.delete(0, END)
+    qt4.insert(0, q4)
+    nr1 = r1 * q1
+    nr2 = r2 * q2
+    nr3 = r3 * q3
+    nr4 = r4 * q4
+    ss = (nr1 + nr2 + nr3 + nr4)
     totdata.config(text=ss)
 
 
 def clear():
+    ghost.grid_forget()
+    enter1.grid_forget()
+    enter2.grid_forget()
+    enter3.grid_forget()
+    enter4.grid_forget()
+    enter5.grid_forget()
     rat1.delete(0, END)
     rat2.delete(0, END)
     rat3.delete(0, END)
@@ -344,6 +390,14 @@ def clear():
     billndata.config(text='')
     beofentry.delete(0, END)
     totdata.config(text='')
+    qt1.delete(0, END)
+    qt1.insert(0, '1')
+    qt2.delete(0, END)
+    qt2.insert(0, '1')
+    qt3.delete(0, END)
+    qt3.insert(0, '1')
+    qt4.delete(0, END)
+    qt4.insert(0, '1')
 
 
 def callent():
@@ -371,36 +425,41 @@ def ce():
     rat.grid(row=1, column=3, padx=15, pady=20)
     gst.grid(row=1, column=4, padx=15, pady=20)
     beof.grid(row=6, column=0, padx=15, pady=20)
-    totdata.grid(row=6, column=3, columnspan=2)
-    billndata.grid(row=0, column=3, columnspan=2)
-    tot.grid(row=6, column=3, padx=15, pady=20)
-    billn.grid(row=0, column=3, padx=15, pady=20)
+    totdata.grid(row=6, column=4, columnspan=2, sticky="E")
+    billndata.grid(row=0, column=4, columnspan=2, sticky="E")
+    tot.grid(row=6, column=3, padx=15, pady=20, sticky="E")
+    billn.grid(row=0, column=3, padx=15, pady=20, sticky="E")
     srn1.grid(row=r, column=0, padx=15, pady=20)
     srn2.grid(row=r + 1, column=0, padx=15, pady=20)
     srn3.grid(row=r + 2, column=0, padx=15, pady=20)
     srn4.grid(row=r + 3, column=0, padx=15, pady=20)
-    desentry1.grid(row=2, column=1, columnspan=2)
+    desentry1.grid(row=2, column=1, columnspan=2, sticky="w")
     find1.grid(row=2, column=1, rowspan=2, sticky="w")
-    desentry2.grid(row=3, column=1, columnspan=2)
+    desentry2.grid(row=3, column=1, columnspan=2, sticky="w")
     find2.grid(row=3, column=1, rowspan=2, sticky="w")
-    desentry3.grid(row=4, column=1, columnspan=2)
+    desentry3.grid(row=4, column=1, columnspan=2, sticky="w")
     find3.grid(row=4, column=1, rowspan=2, sticky="w")
-    desentry4.grid(row=5, column=1, columnspan=2)
+    desentry4.grid(row=5, column=1, columnspan=2, sticky="w")
     find4.grid(row=5, column=1, rowspan=2, sticky="w")
-    beofentry.grid(row=7, column=1, columnspan=2)
+    beofentry.grid(row=6, column=1, columnspan=2, sticky="w")
     rat1.grid(row=2, column=3)
     # rat1.unbind("<Return>")
     rat2.grid(row=3, column=3)
     rat3.grid(row=4, column=3)
     rat4.grid(row=5, column=3)
-    subbtn.grid(row=7, column=3, columnspan=2)
+    qt.grid(row=1, column=4, sticky="w", padx=0)
+    qt1.grid(row=2, column=4, padx=0)
+    qt2.grid(row=3, column=4, padx=0)
+    qt3.grid(row=4, column=4, padx=0)
+    qt4.grid(row=5, column=4, padx=0)
+    subbtn.grid(row=7, column=5, columnspan=2)
     global se, r1, r2, r3, r4, g1, g2, g3, g4, ratin1, ratin2, ratin3, ratin4, gstin1, gstin2, gstin3, gstin4
 
-    gst1.grid(row=2, column=4)
-    gst2.grid(row=3, column=4)
-    gst3.grid(row=4, column=4)
-    gst4.grid(row=5, column=4)
-    gst.grid(row=1, column=4, padx=15, pady=20)
+    gst1.grid(row=2, column=5, sticky="w")
+    gst2.grid(row=3, column=5, sticky="w")
+    gst3.grid(row=4, column=5, sticky="w")
+    gst4.grid(row=5, column=5, sticky="w")
+    gst.grid(row=1, column=5, padx=15, pady=20)
     subbtn.config(command=totupdate_supply)
 
 
@@ -422,21 +481,25 @@ def cs():
     srn2.grid(row=r + 1, column=0, padx=15, pady=20)
     srn3.grid(row=r + 2, column=0, padx=15, pady=20)
     srn4.grid(row=r + 3, column=0, padx=15, pady=20)
-    desentry1.grid(row=2, column=1, columnspan=2)
+    desentry1.grid(row=2, column=1, columnspan=2, sticky="w")
     find1.grid(row=2, column=1, rowspan=2, sticky="w")
-    desentry2.grid(row=3, column=1, columnspan=2)
+    desentry2.grid(row=3, column=1, columnspan=2, sticky="w")
     find2.grid(row=3, column=1, rowspan=2, sticky="w")
-    desentry3.grid(row=4, column=1, columnspan=2)
+    desentry3.grid(row=4, column=1, columnspan=2, sticky="w")
     find3.grid(row=4, column=1, rowspan=2, sticky="w")
-    desentry4.grid(row=5, column=1, columnspan=2)
+    desentry4.grid(row=5, column=1, columnspan=2, sticky="w")
     find4.grid(row=5, column=1, rowspan=2, sticky="w")
-    beofentry.grid(row=6, column=1, columnspan=2)
+    beofentry.grid(row=6, column=1, columnspan=2, sticky="w")
     rat1.grid(row=2, column=3)
     rat2.grid(row=3, column=3)
     rat3.grid(row=4, column=3)
     rat4.grid(row=5, column=3)
     subbtn.grid(row=7, column=3, padx=15, pady=20)
-
+    qt.grid(row=1, column=4, padx=30)
+    qt1.grid(row=2, column=4, padx=20)
+    qt2.grid(row=3, column=4, padx=20)
+    qt3.grid(row=4, column=4, padx=20)
+    qt4.grid(row=5, column=4, padx=20)
     gst1.grid_forget()
     gst2.grid_forget()
     gst3.grid_forget()
@@ -447,18 +510,22 @@ def cs():
     # subbtn.config(command=totupdate)
 
 
+# -----------------------------------------------------------------------------invoice
+# def inv():
+
+# -----------------------------------------------------------------------------deliveryChallan
+# def dc():
 # -----------------------------------------------------------------------------widgets
 billndata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
-global totdata
 totdata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
 mes = Label(root, text='Messers :', font=("Arial", 15), bg="#DDDDDD")
 mesenvar = StringVar()
 mesentry = ttk.Entry(root, textvariable=mesenvar, width=90, xscrollcommand='-wrapt', font=('Arial', 12))
-global gst
 srno = Label(root, text='Sr no.', font=("Arial", 15), bg="#DDDDDD")
 desc = Label(root, text='Description', font=("Arial", 15), bg="#DDDDDD")
-rat = Label(root, text='Rate', font=("Arial", 15), bg="#DDDDDD", padx=90)
-gst = Label(root, text='% GST', font=("Arial", 15), bg="#DDDDDD", padx=90)
+rat = Label(root, text='Rate', font=("Arial", 15), bg="#DDDDDD")
+qt = Label(root, text='Quantity', font=("Arial", 15), bg="#DDDDDD", padx=10)
+gst = Label(root, text='% GST', font=("Arial", 15), bg="#DDDDDD")
 beof = Label(root, text='On Behalf of Uni-Card Enterprises :', font=("Arial", 12), wrap=155, bg="#DDDDDD", )
 tot = Label(root, text='Total :', font=("Arial", 15), bg="#DDDDDD", )
 billn = Label(root, text='Bill no. :', font=("Arial", 15), bg="#DDDDDD", )
@@ -472,22 +539,26 @@ desenvar2 = StringVar()
 desenvar3 = StringVar()
 desenvar4 = StringVar()
 beofenvar = StringVar()
-desentry1 = ttk.Entry(root, textvariable=desenvar1, width=90, font=('Arial', 12))
+desentry1 = ttk.Entry(root, textvariable=desenvar1, width=85, font=('Arial', 12))
 find1 = ttk.Button(root, text='Find1', width=10, command=to1)
-desentry2 = ttk.Entry(root, textvariable=desenvar2, width=90, font=('Arial', 12))
+desentry2 = ttk.Entry(root, textvariable=desenvar2, width=85, font=('Arial', 12))
 find2 = ttk.Button(root, text='Find2', width=10, command=to2)
-desentry3 = ttk.Entry(root, textvariable=desenvar3, width=90, font=('Arial', 12))
+desentry3 = ttk.Entry(root, textvariable=desenvar3, width=85, font=('Arial', 12))
 find3 = ttk.Button(root, text='Find3', width=10, command=to3)
-desentry4 = ttk.Entry(root, textvariable=desenvar4, width=90, font=('Arial', 12))
+desentry4 = ttk.Entry(root, textvariable=desenvar4, width=85, font=('Arial', 12))
 find4 = ttk.Button(root, text='Find4', width=10, command=to4)
-beofentry = ttk.Entry(root, textvariable=beofenvar, width=90, font=('Arial', 12))
+beofentry = ttk.Entry(root, textvariable=beofenvar, width=85, font=('Arial', 12))
 beoff = beofenvar.get()
 
-global rat1, rat2, rat3, rat4, gst1, gst2, gst3, gst4
+# global rat1, rat2, rat3, rat4, gst1, gst2, gst3, gst4
 rat1 = ttk.Entry(root, width=20, font=('Arial', 12))
 rat2 = ttk.Entry(root, width=20, font=('Arial', 12))
 rat3 = ttk.Entry(root, width=20, font=('Arial', 12))
 rat4 = ttk.Entry(root, width=20, font=('Arial', 12))
+qt1 = Spinbox(root, width=5, font=('Arial', 12), justify='center', from_=0, to=10000)
+qt2 = Spinbox(root, width=5, font=('Arial', 12), justify='center', from_=0, to=10000)
+qt3 = Spinbox(root, width=5, font=('Arial', 12), justify='center', from_=0, to=10000)
+qt4 = Spinbox(root, width=5, font=('Arial', 12), justify='center', from_=0, to=10000)
 gst1 = ttk.Entry(root, width=20, font=('Arial', 12))
 # gst1.grid(row=2, column=4)
 gst2 = ttk.Entry(root, width=20, font=('Arial', 12))
@@ -505,6 +576,19 @@ gst2.bind("<Return>", totupdate)
 gst3.bind("<Return>", totupdate)
 gst4.bind("<Return>", totupdate)
 subbtn = ttk.Button(root, text='Calculate', width=20)
+ghost = Label(root, state='disabled', bg='#DDDDDD')
+ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0))
+enter1 = ttk.Button(root, text='Enterprises', width=40, command=callent)
+enter1.grid(column=1, row=0, pady=10, ipady=10)
+enter2 = ttk.Button(root, text='Services', width=40, command=callserv)
+enter2.grid(column=1, row=1, pady=10, ipady=10)
+enter3 = ttk.Button(root, text='Invoice', width=40)
+enter3.grid(column=1, row=2, pady=10, ipady=10)
+enter4 = ttk.Button(root, text='Delivery Challan', width=40)
+enter4.grid(column=1, row=3, pady=10, ipady=10)
+enter5 = ttk.Button(root, text='Recipt', width=40)
+enter5.grid(column=1, row=4, pady=10, ipady=10)
+
 # -----------------------------------------------------------------------------widgets
 
 # -----------------------------------------------------------------------------menu
