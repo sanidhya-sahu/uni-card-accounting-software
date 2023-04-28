@@ -18,3 +18,4 @@ with open('materialcode.txt', 'r') as r:
         b.append(j.cname)
 
 print(b[0])
+
