@@ -21,6 +21,8 @@ ubtn1 = {}
 ubtn2 = {}
 ubtn3 = {}
 ubtn4 = {}
+cbtnen = {}
+cbtnserv = {}
 
 
 # button_id=0
@@ -80,17 +82,190 @@ def take4():
     desentry4.insert(0, btn_text4)
 
 
+def get_button_textcnamserv(button_id):
+    global btn_textcna
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_textcna = cbtnserv[button_id]['text']
+    takecnamserv()
+    cnaserv.destroy()
+
+
+def takecnamserv():
+    mesentry.delete(0, END)
+    mesentry.insert(0, btn_textcna)
+
+def get_button_textcnamen(button_id):
+    global btn_textcnaen
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_textcnaen = cbtnen[button_id]['text']
+    takecnamen()
+    cnaen.destroy()
+
+
+def takecnamen():
+    mesentry.delete(0, END)
+    mesentry.insert(0, btn_textcnaen)
+
 # from home import *
-def to1():
+def cnamen(self):
+    # print(sta)
+    global cnaen
+    cnaen = Toplevel()
+    cnaen.geometry('400x400')
+    cnaen.minsize(400, 400)
+    mf = Frame(cnaen)
+    mf.pack(fill=BOTH, expand=1)
+    mcan = Canvas(mf)
+    mcan.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar = ttk.Scrollbar(mf, orient=VERTICAL, command=mcan.yview)
+    scrbar.pack(side=RIGHT, fill=Y)
+    mcan.config(yscrollcommand=scrbar.set)
+    mcan.bind('<Configure>', lambda e: mcan.config(scrollregion=mcan.bbox('all')))
+
+    sf = Frame(mcan)
+    mcan.create_window((0, 0), window=sf, anchor=NW)
+
+    # top1.minsize(500,500)
+    string_list = []  # empty list to store the strings
+    c = mesentry.get()
+    a = str(c)
+    # print(a)
+    # b = ""
+    # if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
+    #     a = a.upper()
+    # else:
+    #     a = a.capitalize()
+    b = a.lower()
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("coustomerlistent.txt", "r") as file:
+        out = file.readlines()
+        lines = map(lambda x: x.lower(), out)
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+        # line.lower()
+        # print(line)
+        for word in search_words:
+            if word in line:
+                global buttons
+                # print(line)
+                buttons = {}
+
+                string_name = f"string1_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = str(locals()[f"string1_{i + 1}"]).upper()  # create the text for the button
+                button = ttk.Button(sf, text=button_text, command=lambda button_id=i: get_button_textcnamen(
+                    button_id))  # create the button with the text
+                button.grid(row=i, column=0, sticky=W, ipadx=10, columnspan=2)  # add the button to the GUI
+                buttons[i] = button
+                # print(button_text)
+                # print(type(button_text))
+                cbtnen.update(buttons)
+
+                i += 1
+                break
+    # print(string_list)
+    # top1.config
+
+    cnaen.wm_iconbitmap('favicon.ico')
+
+def cnamserv(self):
+    # print(sta)
+    global cnaserv
+    cnaserv = Toplevel()
+    cnaserv.geometry('400x400')
+    cnaserv.minsize(400, 400)
+    mf = Frame(cnaserv)
+    mf.pack(fill=BOTH, expand=1)
+    mcan = Canvas(mf)
+    mcan.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar = ttk.Scrollbar(mf, orient=VERTICAL, command=mcan.yview)
+    scrbar.pack(side=RIGHT, fill=Y)
+    mcan.config(yscrollcommand=scrbar.set)
+    mcan.bind('<Configure>', lambda e: mcan.config(scrollregion=mcan.bbox('all')))
+
+    sf = Frame(mcan)
+    mcan.create_window((0, 0), window=sf, anchor=NW)
+
+    # top1.minsize(500,500)
+    string_list = []  # empty list to store the strings
+    c = mesentry.get()
+    a = str(c)
+    # print(a)
+    # b = ""
+    # if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
+    #     a = a.upper()
+    # else:
+    #     a = a.capitalize()
+    b = a.lower()
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("coustomerlistserv.txt", "r") as file:
+        out = file.readlines()
+        lines = map(lambda x: x.lower(), out)
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+        # line.lower()
+        # print(line)
+        for word in search_words:
+            if word in line:
+                global buttons
+                # print(line)
+                buttons = {}
+
+                string_name = f"string1_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = str(locals()[f"string1_{i + 1}"]).upper()  # create the text for the button
+                button = ttk.Button(sf, text=button_text, command=lambda button_id=i: get_button_textcnamserv(
+                    button_id))  # create the button with the text
+                button.grid(row=i, column=0, sticky=W, ipadx=10, columnspan=2)  # add the button to the GUI
+                buttons[i] = button
+                # print(button_text)
+                # print(type(button_text))
+                cbtnserv.update(buttons)
+
+                i += 1
+                break
+    # print(string_list)
+    # top1.config
+
+    cnaserv.wm_iconbitmap('favicon.ico')
+def to1(self):
     global top1
     top1 = Toplevel()
+    top1.geometry('400x400')
+    top1.minsize(400, 400)
+    mf = Frame(top1)
+    mf.pack(fill=BOTH, expand=1)
+    mcan = Canvas(mf)
+    mcan.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar = ttk.Scrollbar(mf, orient=VERTICAL, command=mcan.yview)
+    scrbar.pack(side=RIGHT, fill=Y)
+    mcan.config(yscrollcommand=scrbar.set)
+    mcan.bind('<Configure>', lambda e: mcan.config(scrollregion=mcan.bbox('all')))
+
+    sf = Frame(mcan)
+    mcan.create_window((0, 0), window=sf, anchor=NW)
+
     # top1.minsize(500,500)
     string_list = []  # empty list to store the strings
     c = desentry1.get()
     a = str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -116,27 +291,42 @@ def to1():
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
                 button_text = locals()[f"string1_{i + 1}"]  # create the text for the button
-                button = ttk.Button(top1, text=button_text, command=lambda button_id=i: get_button_text1(
+                button = ttk.Button(sf, text=button_text, command=lambda button_id=i: get_button_text1(
                     button_id))  # create the button with the text
-                button.pack()  # add the button to the GUI
+                button.grid(row=i, column=0, sticky=W, ipadx=10, columnspan=2)  # add the button to the GUI
                 buttons[i] = button
                 # print(button)
                 ubtn1.update(buttons)
+
                 i += 1
                 break
     # print(string_list)
+    # top1.config
+
     top1.wm_iconbitmap('favicon.ico')
 
 
-def to2():
+def to2(self):
     global top2
     top2 = Toplevel()
+    top2.geometry('400x400')
+    top2.minsize(400, 400)
+    mf2 = Frame(top2)
+    mf2.pack(fill=BOTH, expand=1)
+    mcan2 = Canvas(mf2)
+    mcan2.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar2 = ttk.Scrollbar(mf2, orient=VERTICAL, command=mcan2.yview)
+    scrbar2.pack(side=RIGHT, fill=Y)
+    mcan2.config(yscrollcommand=scrbar2.set)
+    mcan2.bind('<Configure>', lambda e: mcan2.config(scrollregion=mcan2.bbox('all')))
+    sf2 = Frame(mcan2)
+    mcan2.create_window((0, 0), window=sf2, anchor=NW)
     string_list = []  # empty list to store the strings
     c = desentry2.get()
     a = str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -159,9 +349,9 @@ def to2():
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
                 button_text = locals()[f"string2_{i + 1}"]  # create the text for the button
-                button = ttk.Button(top2, text=button_text, command=lambda button_id=i: get_button_text2(
+                button = ttk.Button(sf2, text=button_text, command=lambda button_id=i: get_button_text2(
                     button_id))  # create the button with the text
-                button.pack()  # add the button to the GUI
+                button.grid(row=i, column=0, columnspan=2, sticky=W, ipadx=10)  # add the button to the GUI
                 buttons[i] = button
                 # print(button)
                 ubtn2.update(buttons)
@@ -172,15 +362,27 @@ def to2():
     top2.wm_iconbitmap('favicon.ico')
 
 
-def to3():
+def to3(self):
     global top3
     top3 = Toplevel()
+    top3.geometry('400x400')
+    top3.minsize(400, 400)
+    mf3 = Frame(top3)
+    mf3.pack(fill=BOTH, expand=1)
+    mcan3 = Canvas(mf3)
+    mcan3.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar3 = ttk.Scrollbar(mf3, orient=VERTICAL, command=mcan3.yview)
+    scrbar3.pack(side=RIGHT, fill=Y)
+    mcan3.config(yscrollcommand=scrbar3.set)
+    mcan3.bind('<Configure>', lambda e: mcan3.config(scrollregion=mcan3.bbox('all')))
+    sf3 = Frame(mcan3)
+    mcan3.create_window((0, 0), window=sf3, anchor=NW)
     string_list = []  # empty list to store the strings
     c = desentry3.get()
     a = str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -203,9 +405,9 @@ def to3():
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
                 button_text = locals()[f"string3_{i + 1}"]  # create the text for the button
-                button = ttk.Button(top3, text=button_text, command=lambda button_id=i: get_button_text3(
+                button = ttk.Button(sf3, text=button_text, command=lambda button_id=i: get_button_text3(
                     button_id))  # create the button with the text
-                button.pack()  # add the button to the GUI
+                button.grid(row=i, column=0, columnspan=2, sticky=W, ipadx=10)  # add the button to the GUI
                 buttons[i] = button
                 # print(button)
                 ubtn3.update(buttons)
@@ -215,15 +417,27 @@ def to3():
     top3.wm_iconbitmap('favicon.ico')
 
 
-def to4():
+def to4(self):
     global top4
     top4 = Toplevel()
+    top4.geometry('400x400')
+    top4.minsize(400, 400)
+    mf4 = Frame(top4)
+    mf4.pack(fill=BOTH, expand=1)
+    mcan4 = Canvas(mf4)
+    mcan4.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar4 = ttk.Scrollbar(mf4, orient=VERTICAL, command=mcan4.yview)
+    scrbar4.pack(side=RIGHT, fill=Y)
+    mcan4.config(yscrollcommand=scrbar4.set)
+    mcan4.bind('<Configure>', lambda e: mcan4.config(scrollregion=mcan4.bbox('all')))
+    sf4 = Frame(mcan4)
+    mcan4.create_window((0, 0), window=sf4, anchor=NW)
     string_list = []  # empty list to store the strings
     c = desentry4.get()
     a = str(c)
     # print(a)
     b = ""
-    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp"):
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
         a = a.upper()
     else:
         a = a.capitalize()
@@ -246,9 +460,9 @@ def to4():
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
                 string_list.append(locals()[string_name])  # add the variable to the list
                 button_text = locals()[f"string4_{i + 1}"]  # create the text for the button
-                button = ttk.Button(top4, text=button_text, command=lambda button_id=i: get_button_text4(
+                button = ttk.Button(sf4, text=button_text, command=lambda button_id=i: get_button_text4(
                     button_id))  # create the button with the text
-                button.pack()  # add the button to the GUI
+                button.grid(row=i, column=0, columnspan=2, sticky=W, ipadx=10)  # add the button to the GUI
                 buttons[i] = button
                 # print(button)
                 ubtn4.update(buttons)
@@ -259,6 +473,36 @@ def to4():
 
 
 # -----------------------------------------------------------------------------funx
+# def cnam():
+#     b=sta
+#     cnamee(b)
+# def cnamee(asta):
+#     match asta:
+#         case 1:
+#             cnamen(1)
+#         case 2:
+#             cnamserv(1)
+def cnamecallen():
+    cnamen(1)
+
+def cnamecallserv():
+    cnamserv(1)
+
+def daten1():
+    to1(1)
+
+
+def daten2():
+    to2(1)
+
+
+def daten3():
+    to3(1)
+
+
+def daten4():
+    to4(1)
+
 
 def totupdate_supply():
     totupdate(1)
@@ -420,6 +664,9 @@ def callserv():
 def ce():
     mes.grid(row=0, column=0, padx=15, pady=20)
     mesentry.grid(row=0, column=1)
+    mesentry.bind("<Return>", cnamen)
+    mesfind.grid(row=0, column=2)
+    mesfind.config(command=cnamecallen)
     srno.grid(row=1, column=0, padx=15, pady=20)
     desc.grid(row=1, column=1, padx=15, pady=20)
     rat.grid(row=1, column=3, padx=15, pady=20)
@@ -469,6 +716,9 @@ def cs():
 
     mes.grid(row=0, column=0, padx=15, pady=20)
     mesentry.grid(row=0, column=1)
+    mesentry.bind("<Return>", cnamserv)
+    mesfind.grid(row=0, column=2)
+    mesfind.config(command=cnamecallserv)
     srno.grid(row=1, column=0, padx=15, pady=20)
     desc.grid(row=1, column=1, padx=15, pady=20)
     rat.grid(row=1, column=3, padx=15, pady=20)
@@ -515,12 +765,14 @@ def cs():
 
 # -----------------------------------------------------------------------------deliveryChallan
 # def dc():
+
 # -----------------------------------------------------------------------------widgets
 billndata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
 totdata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
 mes = Label(root, text='Messers :', font=("Arial", 15), bg="#DDDDDD")
 mesenvar = StringVar()
-mesentry = ttk.Entry(root, textvariable=mesenvar, width=90, xscrollcommand='-wrapt', font=('Arial', 12))
+mesentry = ttk.Entry(root, textvariable=mesenvar, width=79, xscrollcommand='-wrapt', font=('Arial', 12))
+mesfind = ttk.Button(root, text='Search', width=10)
 srno = Label(root, text='Sr no.', font=("Arial", 15), bg="#DDDDDD")
 desc = Label(root, text='Description', font=("Arial", 15), bg="#DDDDDD")
 rat = Label(root, text='Rate', font=("Arial", 15), bg="#DDDDDD")
@@ -540,13 +792,17 @@ desenvar3 = StringVar()
 desenvar4 = StringVar()
 beofenvar = StringVar()
 desentry1 = ttk.Entry(root, textvariable=desenvar1, width=85, font=('Arial', 12))
-find1 = ttk.Button(root, text='Find1', width=10, command=to1)
+desentry1.bind("<Return>", to1)
+find1 = ttk.Button(root, text='Find 1', width=10, command=daten1)
 desentry2 = ttk.Entry(root, textvariable=desenvar2, width=85, font=('Arial', 12))
-find2 = ttk.Button(root, text='Find2', width=10, command=to2)
+desentry2.bind("<Return>", to2)
+find2 = ttk.Button(root, text='Find 2', width=10, command=daten2)
 desentry3 = ttk.Entry(root, textvariable=desenvar3, width=85, font=('Arial', 12))
-find3 = ttk.Button(root, text='Find3', width=10, command=to3)
+desentry3.bind("<Return>", to3)
+find3 = ttk.Button(root, text='Find 3', width=10, command=daten3)
 desentry4 = ttk.Entry(root, textvariable=desenvar4, width=85, font=('Arial', 12))
-find4 = ttk.Button(root, text='Find4', width=10, command=to4)
+desentry4.bind("<Return>", to4)
+find4 = ttk.Button(root, text='Find 4', width=10, command=daten4)
 beofentry = ttk.Entry(root, textvariable=beofenvar, width=85, font=('Arial', 12))
 beoff = beofenvar.get()
 
@@ -606,4 +862,5 @@ root.config(menu=men)
 root.attributes('-transparentcolor')
 root.state('zoomed')
 root.wm_iconbitmap('favicon.ico')
-root.mainloop()
+if __name__ == '__main__':
+    root.mainloop()
