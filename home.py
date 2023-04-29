@@ -2,6 +2,7 @@ from inpfilter import *
 from tkinter import *
 from tkinter import ttk
 
+# import cplist
 root = Tk()
 scw = root.winfo_screenwidth()
 sch = root.winfo_screenheight()
@@ -94,6 +95,9 @@ def get_button_textcnamserv(button_id):
 def takecnamserv():
     mesentry.delete(0, END)
     mesentry.insert(0, btn_textcna)
+    coustname.delete(0,END)
+    coustname.insert(0,btn_textcna)
+
 
 def get_button_textcnamen(button_id):
     global btn_textcnaen
@@ -107,6 +111,9 @@ def get_button_textcnamen(button_id):
 def takecnamen():
     mesentry.delete(0, END)
     mesentry.insert(0, btn_textcnaen)
+    coustname.delete(0, END)
+    coustname.insert(0, btn_textcnaen)
+
 
 # from home import *
 def cnamen(self):
@@ -129,7 +136,10 @@ def cnamen(self):
 
     # top1.minsize(500,500)
     string_list = []  # empty list to store the strings
-    c = mesentry.get()
+    if bool(mesentry.winfo_ismapped()) == TRUE:
+        c = mesentry.get()
+    elif bool(coustname.winfo_ismapped()) == TRUE:
+        c = coustname.get()
     a = str(c)
     # print(a)
     # b = ""
@@ -176,6 +186,7 @@ def cnamen(self):
 
     cnaen.wm_iconbitmap('favicon.ico')
 
+
 def cnamserv(self):
     # print(sta)
     global cnaserv
@@ -196,7 +207,11 @@ def cnamserv(self):
 
     # top1.minsize(500,500)
     string_list = []  # empty list to store the strings
-    c = mesentry.get()
+
+    if bool(mesentry.winfo_ismapped())==TRUE:
+        c = mesentry.get()
+    elif bool(coustname.winfo_ismapped())==TRUE:
+        c=coustname.get()
     a = str(c)
     # print(a)
     # b = ""
@@ -242,6 +257,8 @@ def cnamserv(self):
     # top1.config
 
     cnaserv.wm_iconbitmap('favicon.ico')
+
+
 def to1(self):
     global top1
     top1 = Toplevel()
@@ -485,8 +502,10 @@ def to4(self):
 def cnamecallen():
     cnamen(1)
 
+
 def cnamecallserv():
     cnamserv(1)
+
 
 def daten1():
     to1(1)
@@ -622,6 +641,7 @@ def clear():
     enter3.grid_forget()
     enter4.grid_forget()
     enter5.grid_forget()
+    enter6.grid_forget()
     rat1.delete(0, END)
     rat2.delete(0, END)
     rat3.delete(0, END)
@@ -642,7 +662,60 @@ def clear():
     qt3.insert(0, '1')
     qt4.delete(0, END)
     qt4.insert(0, '1')
-
+    coustname.delete(0, END)
+    product.delete(0, END)
+    price.delete(0, END)
+    pasw.delete(0, END)
+    coustname.grid_forget()
+    product.grid_forget()
+    prdct.grid_forget()
+    cust.grid_forget()
+    pri.grid_forget()
+    price.grid_forget()
+    pasw.grid_forget()
+    paswl.grid_forget()
+    look.grid_forget()
+def comclear():
+    mes.grid_forget()
+    mesentry.grid_forget()
+    mesfind.grid_forget()
+    srno.grid_forget()
+    desc.grid_forget()
+    rat.grid_forget()
+    gst.grid_forget()
+    beof.grid_forget()
+    totdata.grid_forget()
+    billndata.grid_forget()
+    tot.grid_forget()
+    billn.grid_forget()
+    srn1.grid_forget()
+    srn2.grid_forget()
+    srn3.grid_forget()
+    srn4.grid_forget()
+    desentry1.grid_forget()
+    find1.grid_forget()
+    desentry2.grid_forget()
+    find2.grid_forget()
+    desentry3.grid_forget()
+    find3.grid_forget()
+    desentry4.grid_forget()
+    find4.grid_forget()
+    beofentry.grid_forget()
+    rat1.grid_forget()
+    rat2.grid_forget()
+    rat3.grid_forget()
+    rat4.grid_forget()
+    qt.grid_forget()
+    qt1.grid_forget()
+    qt2.grid_forget()
+    qt3.grid_forget()
+    qt4.grid_forget()
+    subbtn.grid_forget()
+    gst1.grid_forget()
+    gst2.grid_forget()
+    gst3.grid_forget()
+    gst4.grid_forget()
+    gst.grid_forget()
 
 def callent():
     global sta
@@ -658,6 +731,12 @@ def callserv():
     root.title('Uni-Card Services')
     clear()
     cs()
+
+def cpfilter(self):
+    prin=price.get()
+    pr = printInput(prin)[1]
+    price.delete(0,END)
+    price.insert(0,pr)
 
 
 # -----------------------------------------------------------------------------page en
@@ -765,6 +844,44 @@ def cs():
 
 # -----------------------------------------------------------------------------deliveryChallan
 # def dc():
+# -----------------------------------------------------------------------------cplist
+def cp():
+    root.title('Uni-Card | Customer Price List')
+    clear()
+    comclear()
+    ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0),rowspan=3)
+    paswl.grid(row=4,column=1)
+    pasw.grid(row=4,column=2)
+    pasw.bind("<Return>",pascheck)
+def delpasen():
+    pasw.config(show="⭐")
+    pasw.delete(0, END)
+def pascheck(self):
+    passvalue = pasw.get()
+    passval="1010"
+    if passvalue == passval:
+        clear()
+        comclear()
+        cpp()
+    else:
+        pasw.delete(0, END)
+        pasw.config(show="",font=("Helvetica",12))
+        pasw.insert(0, "Wrong Password")
+        root.after(1000,delpasen)
+        # pasw.config(show="⭐")
+        # pasw.delete(0, END)
+
+
+def cpp():
+    cust.grid(row=0, column=0)
+    prdct.grid(row=1, column=0)
+    pri.grid(row=2, column=0)
+    coustname.grid(row=0, column=1)
+    coustname.bind("<Return>", cnamserv)
+    product.grid(row=1, column=1)
+    price.grid(row=2, column=1)
+    price.bind("<Return>", cpfilter)
+    look.grid(row=3, column=1)
 
 # -----------------------------------------------------------------------------widgets
 billndata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
@@ -832,30 +949,51 @@ gst2.bind("<Return>", totupdate)
 gst3.bind("<Return>", totupdate)
 gst4.bind("<Return>", totupdate)
 subbtn = ttk.Button(root, text='Calculate', width=20)
+
+coustnamevar = StringVar()
+productvar = StringVar()
+passvar=StringVar()
+cust = Label(root, text='Customer name :', font=("Arial", 15), bg="#DDDDDD")
+prdct = Label(root, text='Product :', font=("Arial", 15), bg="#DDDDDD")
+pri = Label(root, text='Price :', font=("Arial", 15), bg="#DDDDDD")
+coustname = ttk.Entry(root, textvariable=coustnamevar, width=79, xscrollcommand='-wrapt', font=('Arial', 12))
+product = ttk.Entry(root, textvariable=productvar, width=79, xscrollcommand='-wrapt', font=('Arial', 12))
+price = ttk.Entry(root, width=20, font=('Arial', 12))
+look = ttk.Button(root, text='Search', width=20)
+adddata = ttk.Button(root, text='➕ Add to list', width=20)
+paswl = Label(root, text='Password :', font=("Arial", 15), bg="#DDDDDD")
+pasw = ttk.Entry(root,textvariable=passvar, width=20, font=('Arial', 12),show="⭐")
+
+
 ghost = Label(root, state='disabled', bg='#DDDDDD')
 ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0))
 enter1 = ttk.Button(root, text='Enterprises', width=40, command=callent)
-enter1.grid(column=1, row=0, pady=10, ipady=10)
+enter1.grid(column=1, row=1, pady=10, ipady=10)
 enter2 = ttk.Button(root, text='Services', width=40, command=callserv)
-enter2.grid(column=1, row=1, pady=10, ipady=10)
+enter2.grid(column=1, row=2, pady=10, ipady=10)
 enter3 = ttk.Button(root, text='Invoice', width=40)
-enter3.grid(column=1, row=2, pady=10, ipady=10)
+enter3.grid(column=1, row=3, pady=10, ipady=10)
 enter4 = ttk.Button(root, text='Delivery Challan', width=40)
-enter4.grid(column=1, row=3, pady=10, ipady=10)
-enter5 = ttk.Button(root, text='Recipt', width=40)
-enter5.grid(column=1, row=4, pady=10, ipady=10)
+enter4.grid(column=1, row=4, pady=10, ipady=10)
+enter5 = ttk.Button(root, text='Recipt', width=40, command=cp)
+enter5.grid(column=1, row=5, pady=10, ipady=10)
+enter6 = ttk.Button(root, text='Price list', width=40, command=cp)
+enter6.grid(column=1, row=6, pady=10, ipady=10)
 
 # -----------------------------------------------------------------------------widgets
 
 # -----------------------------------------------------------------------------menu
 men = Menu(root)
 submen = Menu(men, tearoff=0)
+submen2 = Menu(men, tearoff=0)
 submen.add_command(label='Enterprises', command=callent)
 submen.add_command(label='Services', command=callserv)
 submen.add_command(label='Invoice')
 submen.add_command(label='Recipt')
 submen.add_command(label='Delivery Challan')
+submen2.add_command(label='Price List',command=cp)
 men.add_cascade(label='Billing', menu=submen)
+men.add_cascade(label='Management', menu=submen2)
 root.config(menu=men)
 # -----------------------------------------------------------------------------menu
 
@@ -864,4 +1002,3 @@ root.state('zoomed')
 root.wm_iconbitmap('favicon.ico')
 if __name__ == '__main__':
     root.mainloop()
-
