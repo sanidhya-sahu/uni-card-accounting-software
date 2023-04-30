@@ -24,6 +24,19 @@ ubtn3 = {}
 ubtn4 = {}
 cbtnen = {}
 cbtnserv = {}
+all_dicts = {}
+# global cnamentered
+cnamentered = ""
+
+
+def cpfind():
+    cnamentered = coustname.get()
+    try:
+        pri.grid(row=3, column=3)
+        pri.config(text=all_dicts[cnamentered])
+    except Exception as error:
+        pri.grid(row=3, column=3)
+        pri.config(text="Coustomer data not found")
 
 
 # button_id=0
@@ -95,8 +108,8 @@ def get_button_textcnamserv(button_id):
 def takecnamserv():
     mesentry.delete(0, END)
     mesentry.insert(0, btn_textcna)
-    coustname.delete(0,END)
-    coustname.insert(0,btn_textcna)
+    coustname.delete(0, END)
+    coustname.insert(0, btn_textcna)
 
 
 def get_button_textcnamen(button_id):
@@ -113,6 +126,93 @@ def takecnamen():
     mesentry.insert(0, btn_textcnaen)
     coustname.delete(0, END)
     coustname.insert(0, btn_textcnaen)
+
+
+def get_button_textcnamservcp(button_id):
+    global btn_textcna
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_textcna = cbtnserv[button_id]['text']
+    btn_textcna = str(btn_textcna).replace("\n", "")
+    takecnamservcp()
+    cnaserv.destroy()
+
+
+def takecnamservcp():
+    coustname.delete(0, END)
+    # print(btn_textcna)
+    coustname.insert(0, btn_textcna)
+    # cnamentered=btn_textcna
+    cpfind()
+
+
+def cnamservcp(self):
+    # print(sta)
+    global cnaserv
+    cnaserv = Toplevel()
+    cnaserv.geometry('400x400')
+    cnaserv.minsize(400, 400)
+    mf = Frame(cnaserv)
+    mf.pack(fill=BOTH, expand=1)
+    mcan = Canvas(mf)
+    mcan.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar = ttk.Scrollbar(mf, orient=VERTICAL, command=mcan.yview)
+    scrbar.pack(side=RIGHT, fill=Y)
+    mcan.config(yscrollcommand=scrbar.set)
+    mcan.bind('<Configure>', lambda e: mcan.config(scrollregion=mcan.bbox('all')))
+
+    sf = Frame(mcan)
+    mcan.create_window((0, 0), window=sf, anchor=NW)
+
+    # top1.minsize(500,500)
+    string_list = []  # empty list to store the strings
+
+    c = coustname.get()
+    a = str(c)
+    # print(a)
+    # b = ""
+    # if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
+    #     a = a.upper()
+    # else:
+    #     a = a.capitalize()
+    b = a.lower()
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("coustomerlistserv.txt", "r") as file:
+        out = file.readlines()
+        lines = map(lambda x: x.lower(), out)
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+        # line.lower()
+        # print(line)
+        for word in search_words:
+            if word in line:
+                global buttons
+                # print(line)
+                buttons = {}
+
+                string_name = f"string1_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = str(locals()[f"string1_{i + 1}"]).upper()  # create the text for the button
+                button = ttk.Button(sf, text=button_text, command=lambda button_id=i: get_button_textcnamservcp(
+                    button_id))  # create the button with the text
+                button.grid(row=i, column=0, sticky=W, ipadx=10, columnspan=2)  # add the button to the GUI
+                buttons[i] = button
+                # print(button_text)
+                # print(type(button_text))
+                cbtnserv.update(buttons)
+
+                i += 1
+                break
+    # print(string_list)
+    # top1.config
+
+    cnaserv.wm_iconbitmap('favicon.ico')
 
 
 # from home import *
@@ -208,10 +308,7 @@ def cnamserv(self):
     # top1.minsize(500,500)
     string_list = []  # empty list to store the strings
 
-    if bool(mesentry.winfo_ismapped())==TRUE:
-        c = mesentry.get()
-    elif bool(coustname.winfo_ismapped())==TRUE:
-        c=coustname.get()
+    c = mesentry.get()
     a = str(c)
     # print(a)
     # b = ""
@@ -675,6 +772,8 @@ def clear():
     pasw.grid_forget()
     paswl.grid_forget()
     look.grid_forget()
+
+
 def comclear():
     mes.grid_forget()
     mesentry.grid_forget()
@@ -717,6 +816,7 @@ def comclear():
     gst4.grid_forget()
     gst.grid_forget()
 
+
 def callent():
     global sta
     sta = 1
@@ -732,11 +832,12 @@ def callserv():
     clear()
     cs()
 
+
 def cpfilter(self):
-    prin=price.get()
+    prin = price.get()
     pr = printInput(prin)[1]
-    price.delete(0,END)
-    price.insert(0,pr)
+    price.delete(0, END)
+    price.insert(0, pr)
 
 
 # -----------------------------------------------------------------------------page en
@@ -849,39 +950,44 @@ def cp():
     root.title('Uni-Card | Customer Price List')
     clear()
     comclear()
-    ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0),rowspan=3)
-    paswl.grid(row=4,column=1)
-    pasw.grid(row=4,column=2)
-    pasw.bind("<Return>",pascheck)
+    ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0), rowspan=3)
+    paswl.grid(row=4, column=1)
+    pasw.grid(row=4, column=2)
+    pasw.bind("<Return>", pascheck)
+
+
 def delpasen():
     pasw.config(show="⭐")
     pasw.delete(0, END)
+
+
 def pascheck(self):
     passvalue = pasw.get()
-    passval="1010"
+    passval = "1010"
     if passvalue == passval:
         clear()
         comclear()
         cpp()
     else:
         pasw.delete(0, END)
-        pasw.config(show="",font=("Helvetica",12))
+        pasw.config(show="", font=("Helvetica", 12))
         pasw.insert(0, "Wrong Password")
-        root.after(1000,delpasen)
+        root.after(1000, delpasen)
         # pasw.config(show="⭐")
         # pasw.delete(0, END)
 
 
 def cpp():
     cust.grid(row=0, column=0)
-    prdct.grid(row=1, column=0)
-    pri.grid(row=2, column=0)
+    # prdct.grid(row=1, column=0)
+    # pri.grid(row=2, column=0)
     coustname.grid(row=0, column=1)
-    coustname.bind("<Return>", cnamserv)
-    product.grid(row=1, column=1)
-    price.grid(row=2, column=1)
-    price.bind("<Return>", cpfilter)
+    coustname.bind("<Return>", cnamservcp)
+    # product.grid(row=1, column=1)
+    # price.grid(row=2, column=1)
+    # price.bind("<Return>", cpfilter)
     look.grid(row=3, column=1)
+
 
 # -----------------------------------------------------------------------------widgets
 billndata = ttk.Label(root, text="", width=20, relief='sunken', font=('Arial', 12))
@@ -952,7 +1058,7 @@ subbtn = ttk.Button(root, text='Calculate', width=20)
 
 coustnamevar = StringVar()
 productvar = StringVar()
-passvar=StringVar()
+passvar = StringVar()
 cust = Label(root, text='Customer name :', font=("Arial", 15), bg="#DDDDDD")
 prdct = Label(root, text='Product :', font=("Arial", 15), bg="#DDDDDD")
 pri = Label(root, text='Price :', font=("Arial", 15), bg="#DDDDDD")
@@ -962,8 +1068,7 @@ price = ttk.Entry(root, width=20, font=('Arial', 12))
 look = ttk.Button(root, text='Search', width=20)
 adddata = ttk.Button(root, text='➕ Add to list', width=20)
 paswl = Label(root, text='Password :', font=("Arial", 15), bg="#DDDDDD")
-pasw = ttk.Entry(root,textvariable=passvar, width=20, font=('Arial', 12),show="⭐")
-
+pasw = ttk.Entry(root, textvariable=passvar, width=20, font=('Arial', 12), show="⭐")
 
 ghost = Label(root, state='disabled', bg='#DDDDDD')
 ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0))
@@ -991,7 +1096,7 @@ submen.add_command(label='Services', command=callserv)
 submen.add_command(label='Invoice')
 submen.add_command(label='Recipt')
 submen.add_command(label='Delivery Challan')
-submen2.add_command(label='Price List',command=cp)
+submen2.add_command(label='Price List', command=cp)
 men.add_cascade(label='Billing', menu=submen)
 men.add_cascade(label='Management', menu=submen2)
 root.config(menu=men)
