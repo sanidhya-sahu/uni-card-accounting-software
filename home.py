@@ -1107,3 +1107,4 @@ root.state('zoomed')
 root.wm_iconbitmap('favicon.ico')
 if __name__ == '__main__':
     root.mainloop()
+
