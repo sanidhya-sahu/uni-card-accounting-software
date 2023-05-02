@@ -1,7 +1,7 @@
 from inpfilter import *
 from tkinter import *
 from tkinter import ttk
-
+import pickle
 # import cplist
 root = Tk()
 scw = root.winfo_screenwidth()
@@ -24,19 +24,40 @@ ubtn3 = {}
 ubtn4 = {}
 cbtnen = {}
 cbtnserv = {}
-all_dicts = {}
+# all_dicts = {'APPOLLO CLINIC ':{'1':'a','2':'b','3':'c','4':'d'},'b':{'1':'1','2':'2'},'c':{'1':'1','2':'2','3':'3'}}
+with open('my_dict.pkl', 'rb') as f:
+    all_dicts=pickle.load(f)
+all_dictscpy=all_dicts
 # global cnamentered
 cnamentered = ""
 
 
 def cpfind():
-    cnamentered = coustname.get()
+    cnamentered = coustname.get().rstrip()
+
     try:
-        pri.grid(row=3, column=3)
+        pri.grid(row=4, column=0)
         pri.config(text=all_dicts[cnamentered])
+        diccount=len(all_dicts[cnamentered])
+        # print(diccount)
+        j=0
+        # with open('cplist.txt','w') as f:
+        #     f.write(str(all_dicts))
+        for i in range(diccount):
+                j+=1
+                klist=[]
+                temp_dict=all_dicts[cnamentered]
+                for key in temp_dict.keys():
+                    klist.append(key)
+                tree.insert('', 'end', text=f'{i}', values=(f'{klist[i]}', f'Value {all_dicts[cnamentered][str(j)]}'))
+        tree.grid(row=5,column=0)
+        adddata.grid(row=4,column=4)
+
     except Exception as error:
-        pri.grid(row=3, column=3)
+        print(error)
+        pri.grid(row=4, column=0)
         pri.config(text="Coustomer data not found")
+        adddata.grid(row=4,column=4)
 
 
 # button_id=0
@@ -987,6 +1008,7 @@ def cpp():
     # price.grid(row=2, column=1)
     # price.bind("<Return>", cpfilter)
     look.grid(row=3, column=1)
+    look.config(command=cpfind)
 
 
 # -----------------------------------------------------------------------------widgets
@@ -1069,6 +1091,12 @@ look = ttk.Button(root, text='Search', width=20)
 adddata = ttk.Button(root, text='➕ Add to list', width=20)
 paswl = Label(root, text='Password :', font=("Arial", 15), bg="#DDDDDD")
 pasw = ttk.Entry(root, textvariable=passvar, width=20, font=('Arial', 12), show="⭐")
+tree = ttk.Treeview(root)
+tree['columns'] = ('column1', 'column2')
+tree.heading('#0', text='Serial no.')
+tree.heading('column1', text='Column 1')
+tree.heading('column2', text='Column 2')
+
 
 ghost = Label(root, state='disabled', bg='#DDDDDD')
 ghost.grid(column=0, row=0, padx=((scw // 2) - 130, 0))
