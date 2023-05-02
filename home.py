@@ -58,7 +58,8 @@ def cpfind():
         pri.grid(row=4, column=0)
         pri.config(text="Coustomer data not found")
         adddata.grid(row=4,column=4)
-
+def addcplist():
+    all_dicts
 
 # button_id=0
 def get_button_text1(button_id):
