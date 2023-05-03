@@ -24,6 +24,7 @@ ubtn3 = {}
 ubtn4 = {}
 cbtnen = {}
 cbtnserv = {}
+
 # all_dicts = {'APPOLLO CLINIC ':{'1':'a','2':'b','3':'c','4':'d'},'b':{'1':'1','2':'2'},'c':{'1':'1','2':'2','3':'3'}}
 with open('my_dict.pkl', 'rb') as f:
     all_dicts=pickle.load(f)
@@ -52,14 +53,32 @@ def cpfind():
                 tree.insert('', 'end', text=f'{i}', values=(f'{klist[i]}', f'Value {all_dicts[cnamentered][str(j)]}'))
         tree.grid(row=5,column=0)
         adddata.grid(row=4,column=4)
-
+        adddata.config(command=add_data)
     except Exception as error:
         print(error)
         pri.grid(row=4, column=0)
         pri.config(text="Coustomer data not found")
         adddata.grid(row=4,column=4)
-def addcplist():
-    all_dicts
+        adddata.config(command=add_data)
+
+def add_data():
+    global srcount
+    srcount = 1
+    prodnameentry.grid(row=6,column=0)
+    priceentry.grid(row=6,column=1)
+    tree.grid(row=5, column=0)
+    add_button.grid(row=7,column=0)
+    add_button.config(command=datasubmit)
+
+def datasubmit():
+    global srcount
+    name = prodnameentry.get()
+    pricee = priceentry.get()
+    tree.insert('', 'end', text=srcount, values=(name, pricee))
+    # clear the entry widgets
+    prodnameentry.delete(0, 'end')
+    priceentry.delete(0, 'end')
+    srcount+=1
 
 # button_id=0
 def get_button_text1(button_id):
@@ -1082,6 +1101,8 @@ subbtn = ttk.Button(root, text='Calculate', width=20)
 coustnamevar = StringVar()
 productvar = StringVar()
 passvar = StringVar()
+prodnamevar = StringVar()
+pricevar = StringVar()
 cust = Label(root, text='Customer name :', font=("Arial", 15), bg="#DDDDDD")
 prdct = Label(root, text='Product :', font=("Arial", 15), bg="#DDDDDD")
 pri = Label(root, text='Price :', font=("Arial", 15), bg="#DDDDDD")
@@ -1092,11 +1113,17 @@ look = ttk.Button(root, text='Search', width=20)
 adddata = ttk.Button(root, text='➕ Add to list', width=20)
 paswl = Label(root, text='Password :', font=("Arial", 15), bg="#DDDDDD")
 pasw = ttk.Entry(root, textvariable=passvar, width=20, font=('Arial', 12), show="⭐")
+prodnameentry=ttk.Entry(root, textvariable=prodnamevar, width=60 , font=('Arial',12))
+priceentry=ttk.Entry(root, textvariable=pricevar, width=60 , font=('Arial',12))
+add_button = ttk.Button(root, text='Add Data', command=add_data)
+
+
 tree = ttk.Treeview(root)
 tree['columns'] = ('column1', 'column2')
 tree.heading('#0', text='Serial no.')
 tree.heading('column1', text='Column 1')
 tree.heading('column2', text='Column 2')
+
 
 
 ghost = Label(root, state='disabled', bg='#DDDDDD')
