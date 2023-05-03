@@ -35,7 +35,8 @@ cnamentered = ""
 
 def cpfind():
     cnamentered = coustname.get().rstrip()
-
+    if cnamentered=='':
+        return
     try:
         pri.grid(row=4, column=0)
         pri.config(text=all_dicts[cnamentered])
@@ -55,7 +56,7 @@ def cpfind():
         adddata.grid(row=4,column=4)
         adddata.config(command=add_data)
     except Exception as error:
-        print(error)
+        # print(error)
         pri.grid(row=4, column=0)
         pri.config(text="Coustomer data not found")
         adddata.grid(row=4,column=4)
@@ -65,16 +66,23 @@ def add_data():
     global srcount
     srcount = 1
     prodnameentry.grid(row=6,column=0)
+    prodnameentry.bind("<Return>",pricelistsearch)
     priceentry.grid(row=6,column=1)
     tree.grid(row=5, column=0)
     add_button.grid(row=7,column=0)
     add_button.config(command=datasubmit)
 
+
+
 def datasubmit():
     global srcount
     name = prodnameentry.get()
     pricee = priceentry.get()
-    tree.insert('', 'end', text=srcount, values=(name, pricee))
+    pricee2 = printInput(pricee)[1]
+    # print(pricee2)
+    priceentry.delete(0, 'end')
+    priceentry.insert(0, pricee2)
+    tree.insert('', 'end', text=srcount, values=(name, pricee2))
     # clear the entry widgets
     prodnameentry.delete(0, 'end')
     priceentry.delete(0, 'end')
@@ -131,6 +139,15 @@ def get_button_text4(button_id):
     take4()
     top4.destroy()
 
+def get_button_textpl4(button_id):
+    global btn_text4
+    """Function to retrieve text of a button with a given identifier"""
+    # print(ubtn)
+    btn_text4 = ubtn4[button_id]['text']
+    # datasubmit()
+    prodnameentry.delete(0, 'end')
+    prodnameentry.insert(0,btn_text4)
+    pltop4.destroy()
 
 def take4():
     desentry4.delete(0, END)
@@ -499,6 +516,7 @@ def to2(self):
         for word in search_words:
             if word in line:
                 # print(line)
+                buttons = {}
                 string_name = f"string2_{i + 1}"  # create a variable name with a unique number
                 string_value = f"{line}"  # create the string value
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
@@ -555,6 +573,7 @@ def to3(self):
         for word in search_words:
             if word in line:
                 # print(line)
+                buttons = {}
                 string_name = f"string3_{i + 1}"  # create a variable name with a unique number
                 string_value = f"{line}"  # create the string value
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
@@ -610,6 +629,7 @@ def to4(self):
         for word in search_words:
             if word in line:
                 # print(line)
+                buttons = {}
                 string_name = f"string4_{i + 1}"  # create a variable name with a unique number
                 string_value = f"{line}"  # create the string value
                 locals()[string_name] = string_value  # dynamically create the variable and assign the string value
@@ -626,6 +646,60 @@ def to4(self):
     # print(string_list)
     top4.wm_iconbitmap('favicon.ico')
 
+def pricelistsearch(self):
+    global pltop4
+    pltop4 = Toplevel()
+    pltop4.geometry('400x400')
+    pltop4.minsize(400, 400)
+    mf4 = Frame(pltop4)
+    mf4.pack(fill=BOTH, expand=1)
+    mcan4 = Canvas(mf4)
+    mcan4.pack(side=LEFT, fill=BOTH, expand=1)
+    scrbar4 = ttk.Scrollbar(mf4, orient=VERTICAL, command=mcan4.yview)
+    scrbar4.pack(side=RIGHT, fill=Y)
+    mcan4.config(yscrollcommand=scrbar4.set)
+    mcan4.bind('<Configure>', lambda e: mcan4.config(scrollregion=mcan4.bbox('all')))
+    sf4 = Frame(mcan4)
+    mcan4.create_window((0, 0), window=sf4, anchor=NW)
+    string_list = []  # empty list to store the strings
+    c = prodnameentry.get()
+    a = str(c)
+    # print(a)
+    b = ""
+    if a.startswith("UC") or a.startswith("uc") or a.startswith("nibp") or a.startswith("ecg"):
+        a = a.upper()
+    else:
+        a = a.capitalize()
+    b = a
+    # print(b)
+    search_words = b.split()
+    i = 0
+    with open("materialcode.txt", "r") as file:
+        lines = file.readlines()
+    # key = k.upper()
+
+    for line in lines:
+        # if word in key:
+
+        for word in search_words:
+            if word in line:
+                # print(line)
+                buttons = {}
+                string_name = f"string4_{i + 1}"  # create a variable name with a unique number
+                string_value = f"{line}"  # create the string value
+                locals()[string_name] = string_value  # dynamically create the variable and assign the string value
+                string_list.append(locals()[string_name])  # add the variable to the list
+                button_text = locals()[f"string4_{i + 1}"]  # create the text for the button
+                button = ttk.Button(sf4, text=button_text, command=lambda button_id=i: get_button_textpl4(
+                    button_id))  # create the button with the text
+                button.grid(row=i, column=0, columnspan=2, sticky=W, ipadx=10)  # add the button to the GUI
+                buttons[i] = button
+                # print(button)
+                ubtn4.update(buttons)
+                i += 1
+                break
+    # print(string_list)
+    pltop4.wm_iconbitmap('favicon.ico')
 
 # -----------------------------------------------------------------------------funx
 # def cnam():
@@ -660,6 +734,8 @@ def daten3():
 def daten4():
     to4(1)
 
+def plnamefind():
+    pricelistsearch(1)
 
 def totupdate_supply():
     totupdate(1)
@@ -1121,8 +1197,11 @@ add_button = ttk.Button(root, text='Add Data', command=add_data)
 tree = ttk.Treeview(root)
 tree['columns'] = ('column1', 'column2')
 tree.heading('#0', text='Serial no.')
-tree.heading('column1', text='Column 1')
-tree.heading('column2', text='Column 2')
+tree.heading('column1', text='Product')
+tree.heading('column2', text='Price')
+tree.column('#0', width=100, anchor='center')
+tree.column('column1', width=300, anchor='center')
+tree.column('column2', anchor='center')
 
 
 
